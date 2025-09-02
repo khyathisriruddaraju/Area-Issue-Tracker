@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Area Issue Tracker - User Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e0f7fa;
+      margin: 0; height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    form {
+      background: white;
+      padding: 28px 35px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 320px;
+      box-sizing: border-box;
+    }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #006064;
+      text-align: center;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #004d40;
+    }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    button {
+      background: #00796b;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #004d40;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .link {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .link a {
+      color: #00796b;
+      text-decoration: none;
+    }
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <form id="userLoginForm">
+    <h2>User Login</h2>
+    <div id="loginError" class="error"></div>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" autocomplete="username" required placeholder="Enter your username" />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="Enter your password" />
+
+    <button type="submit">Login</button>
+
+    <div class="link">Are you admin? <a href="admin-login.html">Admin Login</a></div>
+  </form>
+
+  <script>
+    const userForm = document.getElementById('userLoginForm');
+    const loginError = document.getElementById('loginError');
+
+    // Admin credentials to block on user login page
+    const ADMIN_USERNAME = 'admin';
+    const ADMIN_PASSWORD = 'admin123';
+
+    userForm.addEventListener('submit', e => {
+      e.preventDefault();
+      loginError.textContent = '';
+
+      const username = userForm.username.value.trim();
+      const password = userForm.password.value.trim();
+
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        loginError.textContent = 'Admin must login from Admin Login page.';
+        return;
+      }
+
+      // Accept any other username and password
+      localStorage.setItem('username', username);
+      window.location.href = 'index.html'; // redirect to user page
+    });
+  </script>
+</body>
+</html>

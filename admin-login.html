@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Area Issue Tracker - Admin Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffebee;
+      margin: 0; height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    form {
+      background: white;
+      padding: 28px 35px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 320px;
+      box-sizing: border-box;
+    }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #c62828;
+      text-align: center;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #b71c1c;
+    }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    button {
+      background: #d32f2f;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #9a0007;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .link {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .link a {
+      color: #d32f2f;
+      text-decoration: none;
+    }
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <form id="adminLoginForm">
+    <h2>Admin Login</h2>
+    <div id="loginError" class="error"></div>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" autocomplete="username" required placeholder="Enter admin username" />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="Enter admin password" />
+
+    <button type="submit">Login</button>
+
+    <div class="link">Are you a user? <a href="login.html">User Login</a></div>
+  </form>
+
+  <script>
+    const adminForm = document.getElementById('adminLoginForm');
+    const loginError = document.getElementById('loginError');
+
+    const ADMIN_USERNAME = 'admin';
+    const ADMIN_PASSWORD = 'admin123';
+
+    adminForm.addEventListener('submit', e => {
+      e.preventDefault();
+      loginError.textContent = '';
+
+      const username = adminForm.username.value.trim();
+      const password = adminForm.password.value.trim();
+
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        localStorage.setItem('isAdmin', 'true');
+        window.location.href = 'admin.html'; // Admin dashboard page
+      } else {
+        loginError.textContent = 'Invalid username or password.';
+      }
+    });
+  </script>
+</body>
+</html>

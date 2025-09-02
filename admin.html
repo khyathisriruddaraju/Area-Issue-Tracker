@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Area Issue Tracker - Admin Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0 20px 30px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #223366;
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      max-width: 900px;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background: #004080;
+      color: white;
+      font-weight: 600;
+    }
+    tr:hover {
+      background-color: #f1faff;
+    }
+    select {
+      padding: 5px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .no-issues {
+      margin-top: 40px;
+      color: #666;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Dashboard - Manage Issues</h1>
+  <div id="issuesContainer">
+    <table id="issuesTable" aria-label="Reported issues table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Area</th>
+          <th>Type</th>
+          <th>Reporter</th>
+          <th>Status</th>
+          <th>Created At</th>
+          <th>Update Status</th>
+        </tr>
+      </thead>
+      <tbody id="issuesBody">
+        <!-- Issues will load here -->
+      </tbody>
+    </table>
+    <p class="no-issues" id="noIssuesMsg" style="display:none;">No issues reported yet.</p>
+  </div>
+
+<script>
+  async function fetchIssues() {
+    try {
+      const response = await fetch('/issues');
+      const issues = await response.json();
+      return issues;
+    } catch (err) {
+      console.error('Failed to fetch issues:', err);
+      return [];
+    }
+  }
+
+  function formatDate(isoString) {
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return new Date(isoString).toLocaleString(undefined, options);
+  }
+
+  async function updateIssueStatus(id, status) {
+    try {
+      const response = await fetch('/issues/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update status');
+      }
+      loadIssues();
+    } catch (err) {
+      alert('Error updating status: ' + err.message);
+    }
+  }
+
+  async function loadIssues() {
+    const issues = await fetchIssues();
+    const tbody = document.getElementById('issuesBody');
+    const noMsg = document.getElementById('noIssuesMsg');
+
+    if (issues.length === 0) {
+      noMsg.style.display = 'block';
+      tbody.innerHTML = '';
+      return;
+    } else {
+      noMsg.style.display = 'none';
+    }
+
+    tbody.innerHTML = '';
+
+    issues.forEach(issue => {
+      const tr = document.createElement('tr');
+
+      // Populate each column
+      tr.innerHTML = `
+        <td>${issue.title}</td>
+        <td>${issue.description}</td>
+        <td>${issue.area}</td>
+        <td>${issue.type}</td>
+        <td>${issue.reporter}</td>
+        <td>${issue.status}</td>
+        <td>${formatDate(issue.createdAt)}</td>
+        <td>
+          <select aria-label="Update status for ${issue.title}">
+            <option value="Pending" ${issue.status === 'Pending' ? 'selected' : ''}>Pending</option>
+            <option value="In Progress" ${issue.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+            <option value="Resolved" ${issue.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
+          </select>
+        </td>
+      `;
+
+      // Add event listener to select update
+      const select = tr.querySelector('select');
+      select.addEventListener('change', () => {
+        const newStatus = select.value;
+        updateIssueStatus(issue.id, newStatus);
+      });
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadIssues();
+  });
+</script>
+</body>
+</html>

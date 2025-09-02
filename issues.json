@@ -1,0 +1,132 @@
+[
+  {
+    "id": "1746683041060",
+    "title": "Broken street light",
+    "description": "not working",
+    "area": "bhimavaram",
+    "reporter": "khyathi",
+    "type": "Streetlight",
+    "status": "In Progress",
+    "createdAt": "2025-05-08T05:44:01.060Z",
+    "updatedAt": "2025-05-08T06:06:37.416Z"
+  },
+  {
+    "id": "1746684349594",
+    "title": "potholes",
+    "description": "road damaged",
+    "area": "pallapuveedhi",
+    "reporter": "khyathi",
+    "type": "Pothole",
+    "status": "Resolved",
+    "createdAt": "2025-05-08T06:05:49.594Z",
+    "updatedAt": "2025-05-08T06:06:33.538Z"
+  },
+  {
+    "id": "1746685448867",
+    "title": "Broken street light",
+    "description": "not working",
+    "area": "dirusumarru pallapaveedhi",
+    "reporter": "janaki rama raju",
+    "type": "Streetlight",
+    "status": "Resolved",
+    "createdAt": "2025-05-08T06:24:08.867Z",
+    "updatedAt": "2025-05-08T06:25:50.049Z"
+  },
+  {
+    "id": "1746712532934",
+    "title": "drinage problem",
+    "description": "drinage water are leaking to the road",
+    "area": "ashok nagar",
+    "reporter": "ruddaraju chinnu",
+    "type": "Drainage",
+    "status": "In Progress",
+    "createdAt": "2025-05-08T13:55:32.934Z",
+    "updatedAt": "2025-05-08T13:56:39.558Z"
+  },
+  {
+    "id": "1746976175070",
+    "title": "street light",
+    "description": "not working",
+    "area": "gandhi nagar",
+    "reporter": "rajani ruddaraju",
+    "type": "Streetlight",
+    "status": "In Progress",
+    "createdAt": "2025-05-11T15:09:35.071Z",
+    "updatedAt": "2025-05-11T15:10:19.775Z"
+  },
+  {
+    "id": "1747557716767",
+    "title": "broken streetlight",
+    "description": "street light not working",
+    "area": "dirusumarru pallapaveedhi",
+    "reporter": "praneel",
+    "type": "Streetlight",
+    "status": "In Progress",
+    "createdAt": "2025-05-18T08:41:56.767Z",
+    "updatedAt": "2025-05-18T08:42:59.041Z"
+  },
+  {
+    "id": "1749041823416",
+    "title": "potholes",
+    "description": "the road is damaged near our house",
+    "area": "near rice mill",
+    "reporter": "Indukuri Surya Narayana Raju",
+    "type": "Pothole",
+    "status": "Resolved",
+    "createdAt": "2025-06-04T12:57:03.416Z",
+    "updatedAt": "2025-06-04T12:59:23.096Z"
+  },
+  {
+    "id": "1749211864144",
+    "title": "broken",
+    "description": "test",
+    "area": "test",
+    "reporter": "test",
+    "type": "Streetlight",
+    "status": "Pending",
+    "createdAt": "2025-06-06T12:11:04.144Z"
+  },
+  {
+    "id": "1749215666375",
+    "title": "broken street light",
+    "description": "abcd",
+    "area": "nhf",
+    "reporter": "ygyj",
+    "type": "Pothole",
+    "status": "Pending",
+    "createdAt": "2025-06-06T13:14:26.375Z"
+  },
+  {
+    "id": "1749299530812",
+    "title": "jioujoj",
+    "description": "jiojikpkjiji",
+    "area": "jijofrtdrtg",
+    "reporter": "name1",
+    "type": "Other",
+    "status": "Resolved",
+    "createdAt": "2025-06-07T12:32:10.812Z",
+    "updatedAt": "2025-06-07T12:32:41.941Z"
+  },
+  {
+    "id": "1750953542835",
+    "title": "streetlight",
+    "description": "nottt workinggg",
+    "area": "junee",
+    "reporter": "junnee",
+    "type": "Streetlight",
+    "status": "Pending",
+    "createdAt": "2025-06-26T15:59:02.835Z"
+  },
+  {
+    "id": "1755355120354",
+    "title": "pothole near my house",
+    "description": "pothole",
+    "area": "singarajupalem",
+    "reporter": "user17",
+    "type": "Pothole",
+    "status": "Resolved",
+    "createdAt": "2025-08-16T14:38:40.354Z",
+    "updatedAt": "2025-08-16T14:39:26.445Z"
+  }
+]
+
